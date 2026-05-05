@@ -7,15 +7,15 @@
   <style>
     /* Root theme variables */
     :root {
-      --bg: #fff8e6;
-      --surface: #ffffff;
-      --surface-soft: rgba(255, 250, 236, 0.86);
+      --bg: #fff3d4;
+      --surface: rgba(255, 250, 236, 0.95);
+      --surface-soft: rgba(255, 250, 236, 0.8);
       --text: #1c1b18;
       --text-soft: #5c533c;
       --muted: #7d765f;
       --primary: #f5c54b;
-      --primary-soft: rgba(245, 197, 75, 0.18);
-      --border: rgba(158, 140, 90, 0.18);
+      --primary-soft: rgba(245, 197, 75, 0.25);
+      --border: rgba(158, 140, 90, 0.14);
       --shadow: 0 30px 80px rgba(28, 24, 17, 0.08);
       --radius: 28px;
       --radius-sm: 18px;
@@ -25,16 +25,16 @@
     }
 
     body.dark {
-      --bg: #121216;
-      --surface: rgba(18, 18, 28, 0.96);
-      --surface-soft: rgba(22, 20, 38, 0.82);
+      --bg: #050506;
+      --surface: rgba(10, 10, 14, 0.95);
+      --surface-soft: rgba(15, 15, 20, 0.92);
       --text: #f8f7f1;
-      --text-soft: #c5b996;
+      --text-soft: #d7c889;
       --muted: #a89f84;
       --primary: #f4d86f;
-      --primary-soft: rgba(244, 216, 111, 0.18);
-      --border: rgba(190, 168, 105, 0.18);
-      --shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+      --primary-soft: rgba(244, 216, 111, 0.22);
+      --border: rgba(244, 216, 111, 0.18);
+      --shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
       color-scheme: dark;
     }
 
@@ -49,12 +49,17 @@
     body {
       margin: 0;
       min-height: 100%;
-      background: radial-gradient(circle at top right, rgba(245, 197, 75, 0.14), transparent 28%),
-                  linear-gradient(180deg, var(--bg) 0%, #fff7e0 100%);
+      background: radial-gradient(circle at top right, rgba(245, 197, 75, 0.16), transparent 28%),
+                  linear-gradient(180deg, var(--bg) 0%, #fff3d4 100%);
       color: var(--text);
       font-size: 16px;
       line-height: 1.7;
       transition: background 0.4s ease, color 0.4s ease;
+    }
+
+    body.dark {
+      background: radial-gradient(circle at top right, rgba(244, 216, 111, 0.12), transparent 26%),
+                  linear-gradient(180deg, var(--bg) 0%, #080808 100%);
     }
 
     img,
@@ -83,13 +88,14 @@
       top: 0;
       z-index: 30;
       backdrop-filter: blur(16px);
-      background: rgba(255, 255, 255, 0.74);
+      background: rgba(255, 250, 230, 0.35);
       border-bottom: 1px solid var(--border);
       transition: background 0.4s ease, border-color 0.4s ease;
     }
 
     body.dark header {
-      background: rgba(10, 15, 32, 0.92);
+      background: rgba(0, 0, 0, 0.86);
+      border-bottom-color: rgba(244, 216, 111, 0.18);
     }
 
     .navbar {
