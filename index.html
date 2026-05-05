@@ -308,6 +308,16 @@
       opacity: 0.2;
     }
 
+    body.dark .hero-avatar {
+      background: radial-gradient(circle at top left, rgba(181, 134, 0, 0.28), transparent 40%),
+                  linear-gradient(135deg, rgba(181, 134, 0, 0.36), rgba(133, 77, 14, 0.12));
+    }
+
+    body.dark .hero-avatar::before {
+      color: rgba(14, 11, 6, 0.95);
+      opacity: 1;
+    }
+
     .hero-card h3 {
       margin: 0 0 10px;
       font-size: 1.4rem;
