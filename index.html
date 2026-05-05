@@ -290,8 +290,6 @@
       width: 100%;
       aspect-ratio: 1 / 1;
       border-radius: 32px;
-      background: radial-gradient(circle at top left, rgba(245,197,75,0.24), transparent 40%),
-                  linear-gradient(135deg, rgba(245,197,75,0.18), rgba(241, 198, 104, 0.1));
       display: grid;
       place-items: center;
       position: relative;
@@ -299,23 +297,11 @@
       margin-bottom: 28px;
     }
 
-    .hero-avatar::before {
-      content: "VY";
-      font-size: 5rem;
-      font-weight: 800;
-      letter-spacing: 0.1em;
-      color: rgba(245, 197, 75, 0.9);
-      opacity: 0.2;
-    }
-
-    body.dark .hero-avatar {
-      background: radial-gradient(circle at top left, #FFD700, transparent 40%),
-                  linear-gradient(135deg, #FFD700, rgba(255, 215, 0, 0.5));
-    }
-
-    body.dark .hero-avatar::before {
-      color: #000000;
-      opacity: 1;
+    .hero-avatar img {
+      width: 100%;
+      height: 100%;
+      border-radius: 32px;
+      object-fit: cover;
     }
 
     .hero-card h3 {
@@ -450,6 +436,14 @@
     .project-card:hover {
       transform: translateY(-4px);
       box-shadow: 0 28px 78px rgba(15, 23, 42, 0.22);
+    }
+
+    .project-image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 24px 24px 0 0;
+      margin-bottom: 18px;
     }
 
     .project-badge {
@@ -741,7 +735,7 @@
     <section class="hero" id="home">
       <div class="hero-box fade-up">
         <div class="hero-card">
-          <div class="hero-avatar"></div>
+          <div class="hero-avatar"><img src="https://via.placeholder.com/200x200?text=VY+Logo" alt="VY Logo"></div>
           <h3>Võ Ngọc Yến Vy</h3>
           <p>Đại học Gia Định • Đồ họa Kỹ thuật số • Khoa Công Nghệ Thông Tin</p>
         </div>
@@ -793,6 +787,7 @@
       <h2 class="section-heading">Dự án mẫu nổi bật.</h2>
       <div class="projects-grid">
         <article class="project-card fade-up">
+          <img src="https://via.placeholder.com/400x180?text=E-commerce+Website" alt="E-commerce Project" class="project-image">
           <span class="project-badge">Web bán hàng</span>
           <h3 class="project-title">Giao diện cửa hàng trực tuyến</h3>
           <p class="project-text">Thiết kế web bán hàng với bố cục sạch, thanh toán rõ ràng và trải nghiệm mua sắm dễ dàng.</p>
@@ -801,6 +796,7 @@
           </div>
         </article>
         <article class="project-card fade-up delay-1">
+          <img src="https://via.placeholder.com/400x180?text=Education+Website" alt="Education Project" class="project-image">
           <span class="project-badge">Website trường học</span>
           <h3 class="project-title">Website giáo dục</h3>
           <p class="project-text">Thiết kế giao diện trường học thân thiện, dễ truy cập và truyền tải thông tin hiệu quả.</p>
@@ -809,6 +805,7 @@
           </div>
         </article>
         <article class="project-card fade-up delay-2">
+          <img src="https://via.placeholder.com/400x180?text=LMS+System" alt="LMS Project" class="project-image">
           <span class="project-badge">LMS System</span>
           <h3 class="project-title">Hệ thống học trực tuyến</h3>
           <p class="project-text">Bố cục giao diện học tập trực tuyến rõ ràng, thân thiện với người dùng và quản lý nội dung đơn giản.</p>
