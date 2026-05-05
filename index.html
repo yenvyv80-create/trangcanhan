@@ -710,29 +710,21 @@
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🔖</button>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
     </div>
   </header>
 
   <main class="page">
     <section class="hero" id="home">
-      <div class="hero-copy fade-up">
-        <span class="eyebrow">Sinh viên / Thiết kế đồ họa kỹ thuật số</span>
-        <h1 class="hero-title">Thiết kế UI/UX hiện đại với cảm hứng vàng nhạt, tinh tế và ấm áp.</h1>
-        <p class="hero-text">Tôi là Võ Ngọc Yến Vy, sinh viên ngành Đồ họa Kỹ thuật số tại Đại học Gia Định. Tôi tạo ra các trải nghiệm UI/UX chuyên nghiệp với vẻ đẹp tối giản và dễ sử dụng.</p>
-        <div class="hero-actions">
-          <a href="#projects" class="button button-primary">Xem dự án</a>
-          <a href="#contact" class="button button-secondary">Liên hệ</a>
-        </div>
-      </div>
-
-      <div class="hero-box fade-up delay-1">
+      <div class="hero-box fade-up">
         <div class="hero-card">
           <div class="hero-avatar"></div>
           <h3>Võ Ngọc Yến Vy</h3>
-          <p>Sinh viên Đại học Gia Định, chuyên ngành Đồ họa Kỹ thuật số, Khoa Công Nghệ Thông Tin.</p>
+          <p>Đại học Gia Định • Đồ họa Kỹ thuật số • Khoa Công Nghệ Thông Tin</p>
         </div>
       </div>
+
+      <div></div>
     </section>
 
     <section class="section" id="about">
@@ -866,13 +858,15 @@
     const currentTheme = localStorage.getItem('theme');
     if (currentTheme === 'dark') {
       document.body.classList.add('dark');
+      themeToggle.textContent = '☀️';
+    } else {
       themeToggle.textContent = '🌙';
     }
 
     themeToggle.addEventListener('click', () => {
       document.body.classList.toggle('dark');
       const isDark = document.body.classList.contains('dark');
-      themeToggle.textContent = isDark ? '🌙' : '☀️';
+      themeToggle.textContent = isDark ? '☀️' : '🌙';
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
     });
   </script>
