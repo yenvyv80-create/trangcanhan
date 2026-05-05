@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Võ Ngọc Yến Vy | Web Designer</title>
+  <style>
+    /* GLOBAL STYLES */
+    :root {
+      --bg: #f5f8fd;
+      --surface: #ffffff;
+      --surface-soft: rgba(255, 255, 255, 0.85);
+      --text: #0f172a;
+      --subtle: #64748b;
+      --primary: #2563eb;
+      --primary-soft: rgba(37, 99, 235, 0.1);
+      --shadow: 0 28px 80px rgba(15, 23, 42, 0.08);
+      --radius: 28px;
+      --radius-sm: 18px;
+      font-family: Inter, "Segoe UI", Roboto, sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.12), transparent 38%),
+                  linear-gradient(180deg, #f8fbff 0%, #f5f8fd 100%);
+      color: var(--text);
+      min-height: 100%;
+    }
+
+    body {
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    /* CONTAINER */
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 24px 64px;
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(16px);
+      background: rgba(245, 248, 253, 0.82);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+      margin-bottom: 48px;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 18px 0;
+    }
+
+    .brand {
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      flex-wrap: wrap;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .menu li a {
+      position: relative;
+      color: var(--subtle);
+      transition: color 0.22s ease;
+      font-weight: 500;
+    }
+
+    .menu li a::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 2px;
+      background: var(--primary);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.22s ease;
+      opacity: 0;
+    }
+
+    .menu li a:hover,
+    .menu li a:focus {
+      color: var(--text);
+    }
+
+    .menu li a:hover::after,
+    .menu li a:focus::after {
+      transform: scaleX(1);
+      opacity: 1;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: calc(100vh - 118px);
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 56px;
+      padding: 40px 0;
+    }
+
+    .hero-copy {
+      max-width: 620px;
+      animation: fadeInUp 1s ease both;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.85rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 22px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 40px;
+      height: 1px;
+      background: var(--primary);
+      opacity: 0.35;
+    }
+
+    .hero-title {
+      font-size: clamp(3.1rem, 5vw, 4.8rem);
+      line-height: 0.95;
+      margin: 0;
+      letter-spacing: -0.04em;
+    }
+
+    .hero-text {
+      margin: 28px 0 36px;
+      max-width: 560px;
+      color: var(--subtle);
+      font-size: 1.05rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 999px;
+      padding: 15px 28px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+      box-shadow: 0 16px 40px rgba(37, 99, 235, 0.12);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-secondary {
+      background: rgba(15, 23, 42, 0.04);
+      color: var(--text);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 20px 42px rgba(37, 99, 235, 0.18);
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 420px;
+      display: grid;
+      place-items: center;
+      padding: 32px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(241,248,255,0.95) 100%);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      animation: fadeIn 1.2s ease both;
+    }
+
+    .hero-card {
+      width: 100%;
+      max-width: 520px;
+      background: linear-gradient(180deg, #ffffff 0%, #eef6ff 100%);
+      border-radius: 34px;
+      padding: 36px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.72), 0 24px 60px rgba(15,23,42,0.09);
+      display: grid;
+      gap: 24px;
+    }
+
+    .hero-card__item {
+      display: grid;
+      gap: 10px;
+    }
+
+    .hero-card__title {
+      font-size: 0.95rem;
+      color: var(--subtle);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin: 0;
+    }
+
+    .hero-card__value {
+      font-size: 2rem;
+      margin: 0;
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .hero-card__meta {
+      color: var(--subtle);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    /* SECTION TITLES */
+    .section {
+      padding: 72px 0;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+      font-size: 0.95rem;
+      color: var(--primary);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .section-heading {
+      margin: 0;
+      font-size: clamp(2rem, 2.7vw, 3.2rem);
+      line-height: 1.05;
+    }
+
+    .text-muted {
+      color: var(--subtle);
+    }
+
+    /* ABOUT */
+    .about {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .about-text {
+      color: var(--subtle);
+      font-size: 1.03rem;
+      line-height: 1.85;
+    }
+
+    .skills {
+      display: grid;
+      gap: 22px;
+    }
+
+    .skill-card {
+      background: var(--surface);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 28px 76px rgba(15, 23, 42, 0.12);
+    }
+
+    .skill-main {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .skill-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .skill-badge {
+      background: var(--primary-soft);
+      color: var(--primary);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .progress {
+      width: 100%;
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.08);
+      overflow: hidden;
+    }
+
+    .progress span {
+      display: block;
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #2563eb, #60a5fa);
+      transform: translateX(-100%);
+      animation: fill 1.4s cubic-bezier(0.36, 0.66, 0.04, 1) forwards 0.2s;
+    }
+
+    .progress.ui span { width: 88%; }
+    .progress.graphic span { width: 82%; }
+
+    /* PROJECTS */
+    .projects-grid {
+      display: grid;
+      gap: 26px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .project-card {
+      background: rgba(255,255,255,0.92);
+      border-radius: 30px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      transition: transform 0.28s ease, box-shadow 0.28s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px) scale(1.005);
+      box-shadow: 0 34px 90px rgba(15, 23, 42, 0.16);
+    }
+
+    .project-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      background: rgba(37,99,235,0.12);
+      color: var(--primary);
+      font-size: 1.35rem;
+      margin-bottom: 20px;
+    }
+
+    .project-title {
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .project-text {
+      margin: 0;
+      color: var(--subtle);
+      line-height: 1.75;
+    }
+
+    .project-pill {
+      margin-top: 22px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.87rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .project-pill::before {
+      content: "•";
+      color: var(--primary);
+    }
+
+    /* CONTACT */
+    .contact {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .contact-card,
+    .contact-form {
+      background: var(--surface);
+      border-radius: 32px;
+      padding: 36px;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-card h3,
+    .contact-form h3 {
+      margin-top: 0;
+      font-size: 1.6rem;
+      line-height: 1.1;
+    }
+
+    .contact-details {
+      display: grid;
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .contact-bullet {
+      min-width: 44px;
+      height: 44px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .contact-meta {
+      display: grid;
+      gap: 4px;
+    }
+
+    .contact-meta span {
+      color: var(--subtle);
+      font-size: 0.95rem;
+    }
+
+    .form-group {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border: 1px solid rgba(100, 116, 139, 0.18);
+      border-radius: 18px;
+      background: #f8fbff;
+      padding: 16px 18px;
+      color: var(--text);
+      font-size: 1rem;
+      transition: border-color 0.22s ease, box-shadow 0.22s ease;
+      resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: rgba(37, 99, 235, 0.38);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+    }
+
+    textarea {
+      min-height: 170px;
+    }
+
+    .submit-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      padding: 15px 28px;
+      border-radius: 999px;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 20px 40px rgba(37, 99, 235, 0.22);
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 20px;
+      padding: 34px 0 12px;
+      color: var(--subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 16px;
+    }
+
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.05);
+      color: var(--text);
+      font-size: 1.05rem;
+      transition: background 0.25s ease, transform 0.25s ease;
+    }
+
+    .social-links a:hover {
+      background: rgba(37, 99, 235, 0.16);
+      transform: translateY(-1px);
+    }
+
+    .footer-note {
+      font-size: 0.95rem;
+    }
+
+    /* MEDIA QUERIES */
+    @media (max-width: 980px) {
+      .hero,
+      .about,
+      .contact {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 24px;
+      }
+
+      .projects-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .page {
+        padding: 0 18px 48px;
+      }
+
+      .navbar {
+        padding: 16px 0;
+      }
+
+      .menu {
+        gap: 18px;
+      }
+
+      .hero-visual {
+        padding: 24px;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-title {
+        font-size: clamp(2.6rem, 12vw, 3.6rem);
+      }
+
+      .section {
+        padding: 58px 0;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .brand {
+        font-size: 0.9rem;
+      }
+
+      .menu {
+        gap: 14px;
+        font-size: 0.95rem;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .contact-card,
+      .contact-form,
+      .project-card,
+      .skill-card,
+      .hero-card {
+        padding: 24px;
+      }
+
+      .hero {
+        gap: 32px;
+      }
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fill {
+      to {
+        transform: translateX(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <a href="#home" class="brand">VNYV</a>
+      <nav>
+        <ul class="menu">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <span class="eyebrow">Web Designer</span>
+        <h1 class="hero-title">Thiết kế trải nghiệm web tinh tế, tối giản và hiện đại.</h1>
+        <p class="hero-text">Tôi là Võ Ngọc Yến Vy, Web Designer / UI-UX Designer với 1 năm kinh nghiệm xây dựng giao diện cho web bán hàng, website trường học và hệ thống LMS.</p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">Xem dự án</a>
+          <a href="#contact" class="btn btn-secondary">Liên hệ với tôi</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-card">
+          <div class="hero-card__item">
+            <p class="hero-card__title">Tập trung vào:</p>
+            <h2 class="hero-card__value">UI / UX Design</h2>
+          </div>
+          <div class="hero-card__item">
+            <p class="hero-card__meta">Thiết kế giao diện rõ ràng với cấu trúc trải nghiệm thân thiện, chuyên nghiệp và dễ tiếp cận cho người dùng.</p>
+          </div>
+          <div class="hero-card__item">
+            <p class="hero-card__title">Phong cách:</p>
+            <h2 class="hero-card__value">Tối giản, sang trọng</h2>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="section-title">About</div>
+      <h2 class="section-heading">Thiết kế tập trung vào người dùng và chuyển đổi.</h2>
+      <div class="about">
+        <div>
+          <p class="about-text">Với 1 năm kinh nghiệm thiết kế UI web bán hàng, website trường học và hệ thống LMS, tôi xây dựng giải pháp trực quan, dễ sử dụng và phù hợp với xu hướng hiện đại. Mỗi thiết kế đều ưu tiên tính thẩm mỹ nhẹ nhàng, bố cục cân đối và màu sắc hài hòa.</p>
+        </div>
+        <div class="skills">
+          <article class="skill-card">
+            <div class="skill-main">
+              <h3 class="skill-name">UI / UX Design</h3>
+              <span class="skill-badge">Chuyên sâu</span>
+            </div>
+            <div class="progress ui"><span></span></div>
+          </article>
+          <article class="skill-card">
+            <div class="skill-main">
+              <h3 class="skill-name">Thiết kế đồ họa</h3>
+              <span class="skill-badge">Sáng tạo</span>
+            </div>
+            <div class="progress graphic"><span></span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="section-title">Projects</div>
+      <h2 class="section-heading">Các dự án nổi bật tôi đã thực hiện.</h2>
+      <div class="projects-grid">
+        <article class="project-card">
+          <div class="project-icon">🛒</div>
+          <h3 class="project-title">Web bán hàng</h3>
+          <p class="project-text">Thiết kế cửa hàng trực tuyến chuyên nghiệp với trải nghiệm mua sắm mượt mà, rõ ràng và tối ưu cho khách hàng.</p>
+          <div class="project-pill">UI/UX Design</div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-icon">🏫</div>
+          <h3 class="project-title">Website trường học</h3>
+          <p class="project-text">Xây dựng giao diện website trường học thân thiện, dễ quản lý thông tin và truyền tải hình ảnh thương hiệu chuyên nghiệp.</p>
+          <div class="project-pill">Thiết kế nhận diện</div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-icon">🎓</div>
+          <h3 class="project-title">Hệ thống LMS</h3>
+          <p class="project-text">Thiết kế hệ thống học tập trực tuyến với cấu trúc rõ ràng, bảng điều khiển dễ sử dụng và trải nghiệm theo dõi khóa học hiệu quả.</p>
+          <div class="project-pill">Trải nghiệm người dùng</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="section-title">Contact</div>
+      <h2 class="section-heading">Cùng tạo nên trải nghiệm kỹ thuật số ấn tượng.</h2>
+      <div class="contact">
+        <div class="contact-card">
+          <h3>Thông tin liên hệ</h3>
+          <div class="contact-details">
+            <div class="contact-item">
+              <div class="contact-bullet">📧</div>
+              <div class="contact-meta">
+                <strong>Email</strong>
+                <span>yonvydesign@example.com</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-bullet">📍</div>
+              <div class="contact-meta">
+                <strong>Vị trí</strong>
+                <span>TP. Hồ Chí Minh, Việt Nam</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-bullet">💼</div>
+              <div class="contact-meta">
+                <strong>Vai trò</strong>
+                <span>Web Designer / UI-UX Designer</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form" action="#" method="POST">
+          <h3>Gửi tin nhắn</h3>
+          <div class="form-group">
+            <label for="name">Họ và tên</label>
+            <input id="name" type="text" placeholder="Nhập tên của bạn" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="Nhập email của bạn" />
+          </div>
+          <div class="form-group">
+            <label for="message">Tin nhắn</label>
+            <textarea id="message" placeholder="Viết nội dung liên hệ" rows="6"></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Gửi tin nhắn</button>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      <p class="footer-note">© 2026 Võ Ngọc Yến Vy. All rights reserved.</p>
+      <div class="social-links">
+        <a href="#" aria-label="LinkedIn">in</a>
+        <a href="#" aria-label="Behance">Be</a>
+        <a href="#" aria-label="Dribbble">Dr</a>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
