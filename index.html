@@ -73,6 +73,23 @@
       z-index: -1;
     }
 
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 240px;
+      background-image: url('https://images.unsplash.com/photo-1625246333333-f89aff2b4e3f?w=1200&h=300&fit=crop&q=20');
+      background-repeat: repeat-x;
+      background-position: bottom;
+      background-size: auto 240px;
+      background-attachment: scroll;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.75;
+    }
+
     body.dark::before {
       background: radial-gradient(circle at top right, rgba(244, 216, 111, 0.12), transparent 26%),
                   linear-gradient(180deg, var(--bg) 0%, #080808 100%);
