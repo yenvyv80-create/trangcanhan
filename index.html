@@ -3,45 +3,57 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Võ Ngọc Yến Vy | Web Designer</title>
+  <title>Võ Ngọc Yến Vy | Portfolio</title>
   <style>
-    /* GLOBAL STYLES */
+    /* Root theme variables */
     :root {
-      --bg: #f5f8fd;
+      --bg: #f3f7ff;
       --surface: #ffffff;
-      --surface-soft: rgba(255, 255, 255, 0.85);
+      --surface-soft: rgba(255, 255, 255, 0.88);
       --text: #0f172a;
-      --subtle: #64748b;
+      --muted: #64748b;
       --primary: #2563eb;
-      --primary-soft: rgba(37, 99, 235, 0.1);
-      --shadow: 0 28px 80px rgba(15, 23, 42, 0.08);
+      --primary-soft: rgba(37, 99, 235, 0.12);
+      --border: rgba(15, 23, 42, 0.08);
+      --shadow: 0 24px 80px rgba(15, 23, 42, 0.08);
       --radius: 28px;
       --radius-sm: 18px;
-      font-family: Inter, "Segoe UI", Roboto, sans-serif;
+      --font: "Inter", "Segoe UI", sans-serif;
+      color-scheme: light;
       scroll-behavior: smooth;
+    }
+
+    body.dark {
+      --bg: linear-gradient(180deg, #081026 0%, #0b1737 100%);
+      --surface: rgba(12, 22, 47, 0.92);
+      --surface-soft: rgba(18, 32, 72, 0.88);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --primary: #60a5fa;
+      --primary-soft: rgba(96, 165, 250, 0.16);
+      --border: rgba(148, 163, 184, 0.18);
+      --shadow: 0 30px 90px rgba(0, 0, 0, 0.28);
+      color-scheme: dark;
     }
 
     * {
       box-sizing: border-box;
     }
 
-    html, body {
+    html,
+    body {
       margin: 0;
       padding: 0;
-      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.12), transparent 38%),
-                  linear-gradient(180deg, #f8fbff 0%, #f5f8fd 100%);
-      color: var(--text);
       min-height: 100%;
-    }
-
-    body {
-      line-height: 1.6;
-      font-size: 16px;
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      transition: background 0.35s ease, color 0.35s ease;
     }
 
     img {
-      max-width: 100%;
       display: block;
+      max-width: 100%;
     }
 
     a {
@@ -53,22 +65,25 @@
       font: inherit;
     }
 
-    /* CONTAINER */
     .page {
-      max-width: 1180px;
+      width: min(1180px, calc(100% - 32px));
       margin: 0 auto;
-      padding: 0 24px 64px;
+      padding: 0 0 64px;
     }
 
-    /* HEADER */
     header {
       position: sticky;
       top: 0;
       z-index: 20;
-      backdrop-filter: blur(16px);
-      background: rgba(245, 248, 253, 0.82);
-      border-bottom: 1px solid rgba(148, 163, 184, 0.12);
-      margin-bottom: 48px;
+      backdrop-filter: blur(18px);
+      background: rgba(255, 255, 255, 0.72);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.35s ease, border-color 0.35s ease;
+    }
+
+    body.dark header {
+      background: rgba(12, 22, 47, 0.88);
+      border-color: rgba(148, 163, 184, 0.14);
     }
 
     .navbar {
@@ -76,19 +91,17 @@
       align-items: center;
       justify-content: space-between;
       gap: 24px;
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 18px 0;
+      padding: 22px 0;
     }
 
     .brand {
-      font-weight: 700;
       font-size: 1rem;
-      letter-spacing: 0.18em;
+      font-weight: 700;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
     }
 
-    .menu {
+    .nav-links {
       display: flex;
       align-items: center;
       gap: 28px;
@@ -98,48 +111,66 @@
       padding: 0;
     }
 
-    .menu li a {
+    .nav-links a {
       position: relative;
-      color: var(--subtle);
-      transition: color 0.22s ease;
-      font-weight: 500;
+      color: var(--muted);
+      font-weight: 600;
+      transition: color 0.25s ease;
     }
 
-    .menu li a::after {
+    .nav-links a::after {
       content: "";
       position: absolute;
-      inset: auto 0 0;
+      left: 0;
+      bottom: -6px;
+      width: 100%;
       height: 2px;
       background: var(--primary);
       transform: scaleX(0);
       transform-origin: left;
-      transition: transform 0.22s ease;
+      transition: transform 0.25s ease;
       opacity: 0;
     }
 
-    .menu li a:hover,
-    .menu li a:focus {
+    .nav-links a:hover,
+    .nav-links a:focus {
       color: var(--text);
     }
 
-    .menu li a:hover::after,
-    .menu li a:focus::after {
+    .nav-links a:hover::after,
+    .nav-links a:focus::after {
       transform: scaleX(1);
       opacity: 1;
     }
 
-    /* HERO */
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+      transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+    }
+
+    .theme-toggle:hover {
+      transform: translateY(-2px);
+    }
+
     .hero {
-      min-height: calc(100vh - 118px);
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
+      gap: 48px;
       align-items: center;
-      gap: 56px;
-      padding: 40px 0;
+      min-height: calc(100vh - 140px);
+      padding: 48px 0;
     }
 
     .hero-copy {
-      max-width: 620px;
+      max-width: 640px;
       animation: fadeInUp 1s ease both;
     }
 
@@ -147,10 +178,10 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      font-size: 0.85rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
       color: var(--primary);
+      letter-spacing: 0.18em;
+      font-size: 0.82rem;
+      text-transform: uppercase;
       margin-bottom: 22px;
     }
 
@@ -159,11 +190,11 @@
       width: 40px;
       height: 1px;
       background: var(--primary);
-      opacity: 0.35;
+      opacity: 0.55;
     }
 
     .hero-title {
-      font-size: clamp(3.1rem, 5vw, 4.8rem);
+      font-size: clamp(3rem, 5vw, 4.4rem);
       line-height: 0.95;
       margin: 0;
       letter-spacing: -0.04em;
@@ -172,8 +203,9 @@
     .hero-text {
       margin: 28px 0 36px;
       max-width: 560px;
-      color: var(--subtle);
+      color: var(--muted);
       font-size: 1.05rem;
+      line-height: 1.8;
     }
 
     .hero-actions {
@@ -186,10 +218,10 @@
       border: none;
       border-radius: 999px;
       padding: 15px 28px;
-      font-weight: 600;
-      cursor: pointer;
+      font-weight: 700;
       transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
-      box-shadow: 0 16px 40px rgba(37, 99, 235, 0.12);
+      cursor: pointer;
+      box-shadow: 0 18px 45px rgba(37, 99, 235, 0.14);
     }
 
     .btn-primary {
@@ -198,315 +230,337 @@
     }
 
     .btn-secondary {
-      background: rgba(15, 23, 42, 0.04);
+      background: rgba(15, 23, 42, 0.06);
       color: var(--text);
     }
 
     .btn:hover {
       transform: translateY(-1px);
-      box-shadow: 0 20px 42px rgba(37, 99, 235, 0.18);
+      box-shadow: 0 22px 45px rgba(37, 99, 235, 0.2);
     }
 
     .hero-visual {
       position: relative;
-      min-height: 420px;
-      display: grid;
-      place-items: center;
-      padding: 32px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(241,248,255,0.95) 100%);
-      border-radius: var(--radius);
+      border-radius: 32px;
+      padding: 36px;
+      background: var(--surface-soft);
       box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
       overflow: hidden;
-      backdrop-filter: blur(10px);
-      animation: fadeIn 1.2s ease both;
+      animation: fadeIn 1.1s ease both;
     }
 
     .hero-card {
+      display: grid;
+      gap: 20px;
+      padding: 28px;
+      border-radius: 32px;
+      background: var(--surface);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    }
+
+    .avatar {
       width: 100%;
-      max-width: 520px;
-      background: linear-gradient(180deg, #ffffff 0%, #eef6ff 100%);
-      border-radius: 34px;
-      padding: 36px;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.72), 0 24px 60px rgba(15,23,42,0.09);
+      height: 420px;
+      border-radius: 32px;
+      background: radial-gradient(circle at 25% 25%, rgba(37, 99, 235, 0.24), transparent 32%),
+                  linear-gradient(180deg, rgba(96, 165, 250, 0.18), rgba(255, 255, 255, 0.05));
       display: grid;
-      gap: 24px;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
     }
 
-    .hero-card__item {
+    .avatar::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.55), transparent 24%);
+    }
+
+    .avatar-figure {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #60a5fa 0%, #2563eb 100%);
+      border: 10px solid rgba(255, 255, 255, 0.32);
       display: grid;
-      gap: 10px;
-    }
-
-    .hero-card__title {
-      font-size: 0.95rem;
-      color: var(--subtle);
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      margin: 0;
-    }
-
-    .hero-card__value {
-      font-size: 2rem;
-      margin: 0;
-      color: var(--text);
+      place-items: center;
+      color: white;
+      font-size: 3.6rem;
       font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      box-shadow: 0 24px 60px rgba(37, 99, 235, 0.22);
+      position: relative;
+      z-index: 1;
     }
 
-    .hero-card__meta {
-      color: var(--subtle);
-      font-size: 0.95rem;
-      line-height: 1.7;
+    .hero-info {
+      display: grid;
+      gap: 16px;
     }
 
-    /* SECTION TITLES */
+    .hero-info p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .hero-info .meta-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .meta-item {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      padding: 16px;
+      border-radius: 22px;
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+    }
+
+    .meta-item strong {
+      min-width: 110px;
+      display: inline-block;
+      color: var(--text);
+    }
+
     .section {
       padding: 72px 0;
     }
 
     .section-title {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 14px;
-      margin-bottom: 28px;
-      font-size: 0.95rem;
+      gap: 12px;
       color: var(--primary);
-      letter-spacing: 0.16em;
+      font-size: 0.88rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
+      margin-bottom: 20px;
     }
 
     .section-heading {
       margin: 0;
-      font-size: clamp(2rem, 2.7vw, 3.2rem);
+      font-size: clamp(2rem, 2.8vw, 3rem);
       line-height: 1.05;
     }
 
-    .text-muted {
-      color: var(--subtle);
+    .section-description {
+      max-width: 680px;
+      color: var(--muted);
+      margin-top: 18px;
+      line-height: 1.8;
     }
 
-    /* ABOUT */
-    .about {
+    .about-grid {
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
-      gap: 40px;
-      align-items: start;
+      gap: 32px;
+      margin-top: 40px;
+    }
+
+    .about-card,
+    .skills-card,
+    .contact-card,
+    .project-card,
+    .contact-form {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 32px;
+      box-shadow: var(--shadow);
+      transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+    }
+
+    .about-card,
+    .skills-card,
+    .contact-card,
+    .contact-form {
+      padding: 32px;
+    }
+
+    .about-card:hover,
+    .skills-card:hover,
+    .project-card:hover,
+    .contact-card:hover,
+    .contact-form:hover {
+      transform: translateY(-4px);
+    }
+
+    .about-card h3,
+    .skills-card h3,
+    .contact-card h3,
+    .contact-form h3 {
+      margin-top: 0;
+      font-size: 1.6rem;
     }
 
     .about-text {
-      color: var(--subtle);
-      font-size: 1.03rem;
-      line-height: 1.85;
-    }
-
-    .skills {
-      display: grid;
-      gap: 22px;
-    }
-
-    .skill-card {
-      background: var(--surface);
-      border-radius: 24px;
-      padding: 24px;
-      box-shadow: var(--shadow);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .skill-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 28px 76px rgba(15, 23, 42, 0.12);
-    }
-
-    .skill-main {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      margin-bottom: 18px;
-    }
-
-    .skill-name {
-      font-size: 1.1rem;
-      font-weight: 700;
+      color: var(--muted);
+      line-height: 1.8;
       margin: 0;
     }
 
-    .skill-badge {
-      background: var(--primary-soft);
-      color: var(--primary);
-      padding: 8px 14px;
-      border-radius: 999px;
-      font-size: 0.85rem;
-      font-weight: 600;
-    }
-
-    .progress {
-      width: 100%;
-      height: 12px;
-      border-radius: 999px;
-      background: rgba(37, 99, 235, 0.08);
-      overflow: hidden;
-    }
-
-    .progress span {
-      display: block;
-      height: 100%;
-      border-radius: 999px;
-      background: linear-gradient(90deg, #2563eb, #60a5fa);
-      transform: translateX(-100%);
-      animation: fill 1.4s cubic-bezier(0.36, 0.66, 0.04, 1) forwards 0.2s;
-    }
-
-    .progress.ui span { width: 88%; }
-    .progress.graphic span { width: 82%; }
-
-    /* PROJECTS */
-    .projects-grid {
+    .info-grid {
       display: grid;
-      gap: 26px;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .info-block {
+      display: grid;
+      gap: 6px;
+    }
+
+    .info-block strong {
+      color: var(--text);
+    }
+
+    .skill-list {
+      display: grid;
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .skill-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 18px;
+      border-radius: 18px;
+      background: var(--surface-soft);
+      color: var(--text);
+      font-weight: 600;
+      border: 1px solid transparent;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .skill-pill:hover {
+      transform: translateY(-2px);
+      border-color: var(--primary);
+    }
+
+    .project-list {
+      display: grid;
+      gap: 24px;
+      margin-top: 36px;
     }
 
     .project-card {
-      background: rgba(255,255,255,0.92);
-      border-radius: 30px;
-      padding: 28px;
-      box-shadow: var(--shadow);
-      transition: transform 0.28s ease, box-shadow 0.28s ease;
-      position: relative;
+      padding: 32px;
       overflow: hidden;
     }
 
-    .project-card:hover {
-      transform: translateY(-6px) scale(1.005);
-      box-shadow: 0 34px 90px rgba(15, 23, 42, 0.16);
-    }
-
     .project-icon {
-      width: 54px;
-      height: 54px;
-      border-radius: 18px;
+      width: 56px;
+      height: 56px;
       display: grid;
       place-items: center;
-      background: rgba(37,99,235,0.12);
+      background: var(--primary-soft);
       color: var(--primary);
-      font-size: 1.35rem;
+      border-radius: 18px;
+      font-size: 1.4rem;
       margin-bottom: 20px;
     }
 
     .project-title {
       margin: 0 0 10px;
-      font-size: 1.2rem;
-      font-weight: 700;
+      font-size: 1.35rem;
     }
 
     .project-text {
       margin: 0;
-      color: var(--subtle);
-      line-height: 1.75;
+      color: var(--muted);
+      line-height: 1.8;
     }
 
-    .project-pill {
+    .project-chip {
       margin-top: 22px;
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      font-size: 0.87rem;
-      font-weight: 600;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: var(--primary-soft);
       color: var(--primary);
+      font-size: 0.9rem;
+      font-weight: 700;
     }
 
-    .project-pill::before {
-      content: "•";
-      color: var(--primary);
-    }
-
-    /* CONTACT */
     .contact {
       display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 40px;
-      align-items: start;
-    }
-
-    .contact-card,
-    .contact-form {
-      background: var(--surface);
-      border-radius: 32px;
-      padding: 36px;
-      box-shadow: var(--shadow);
-    }
-
-    .contact-card h3,
-    .contact-form h3 {
-      margin-top: 0;
-      font-size: 1.6rem;
-      line-height: 1.1;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 32px;
+      margin-top: 40px;
     }
 
     .contact-details {
       display: grid;
-      gap: 18px;
-      margin-top: 28px;
+      gap: 20px;
+      margin-top: 24px;
     }
 
     .contact-item {
       display: flex;
-      align-items: flex-start;
       gap: 16px;
+      align-items: center;
     }
 
-    .contact-bullet {
-      min-width: 44px;
-      height: 44px;
-      border-radius: 16px;
+    .contact-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 18px;
       display: grid;
       place-items: center;
       background: var(--primary-soft);
       color: var(--primary);
-      font-weight: 700;
-      flex-shrink: 0;
+      font-size: 1.2rem;
     }
 
     .contact-meta {
       display: grid;
       gap: 4px;
+      color: var(--muted);
     }
 
-    .contact-meta span {
-      color: var(--subtle);
-      font-size: 0.95rem;
+    .contact-meta strong {
+      color: var(--text);
     }
 
     .form-group {
       display: grid;
-      gap: 12px;
+      gap: 10px;
       margin-bottom: 18px;
     }
 
     label {
       font-weight: 600;
-      font-size: 0.95rem;
       color: var(--text);
     }
 
     input,
     textarea {
       width: 100%;
-      border: 1px solid rgba(100, 116, 139, 0.18);
+      border: 1px solid var(--border);
       border-radius: 18px;
-      background: #f8fbff;
-      padding: 16px 18px;
+      background: var(--surface-soft);
       color: var(--text);
+      padding: 16px 18px;
       font-size: 1rem;
-      transition: border-color 0.22s ease, box-shadow 0.22s ease;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
       resize: vertical;
     }
 
     input:focus,
     textarea:focus {
       outline: none;
-      border-color: rgba(37, 99, 235, 0.38);
+      border-color: var(--primary);
       box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+      background: var(--surface);
     }
 
     textarea {
@@ -517,31 +571,30 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: fit-content;
-      padding: 15px 28px;
+      padding: 15px 30px;
       border-radius: 999px;
       background: var(--primary);
-      color: #fff;
+      color: white;
       border: none;
       cursor: pointer;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      font-weight: 700;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .submit-btn:hover {
       transform: translateY(-1px);
-      box-shadow: 0 20px 40px rgba(37, 99, 235, 0.22);
+      box-shadow: 0 20px 50px rgba(37, 99, 235, 0.22);
     }
 
-    /* FOOTER */
     footer {
-      margin-top: 20px;
-      padding: 34px 0 12px;
-      color: var(--subtle);
+      margin-top: 50px;
+      padding: 32px 0 18px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
       gap: 18px;
+      color: var(--muted);
     }
 
     .social-links {
@@ -550,112 +603,95 @@
     }
 
     .social-links a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 38px;
-      height: 38px;
-      border-radius: 12px;
-      background: rgba(15, 23, 42, 0.05);
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: var(--surface-soft);
       color: var(--text);
-      font-size: 1.05rem;
-      transition: background 0.25s ease, transform 0.25s ease;
+      font-size: 0.95rem;
+      transition: transform 0.25s ease, background 0.25s ease;
     }
 
     .social-links a:hover {
-      background: rgba(37, 99, 235, 0.16);
-      transform: translateY(-1px);
+      transform: translateY(-3px);
+      background: var(--primary-soft);
+      color: var(--primary);
     }
 
     .footer-note {
-      font-size: 0.95rem;
+      margin: 0;
+      font-size: 0.94rem;
     }
 
-    /* MEDIA QUERIES */
-    @media (max-width: 980px) {
+    @media (max-width: 1024px) {
       .hero,
-      .about,
+      .about-grid,
       .contact {
         grid-template-columns: 1fr;
       }
 
       .hero {
         min-height: auto;
-        padding-top: 24px;
       }
 
-      .projects-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+      .page {
+        width: min(100%, calc(100% - 32px));
       }
     }
 
     @media (max-width: 720px) {
-      .page {
-        padding: 0 18px 48px;
+      header {
+        padding: 0 0 8px;
       }
 
       .navbar {
-        padding: 16px 0;
-      }
-
-      .menu {
-        gap: 18px;
-      }
-
-      .hero-visual {
-        padding: 24px;
-      }
-
-      .projects-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-title {
-        font-size: clamp(2.6rem, 12vw, 3.6rem);
-      }
-
-      .section {
-        padding: 58px 0;
-      }
-    }
-
-    @media (max-width: 520px) {
-      .brand {
-        font-size: 0.9rem;
-      }
-
-      .menu {
-        gap: 14px;
-        font-size: 0.95rem;
-      }
-
-      .hero-actions {
         flex-direction: column;
-        align-items: stretch;
+        align-items: flex-start;
       }
 
-      .btn {
-        width: 100%;
-      }
-
-      .contact-card,
-      .contact-form,
-      .project-card,
-      .skill-card,
-      .hero-card {
-        padding: 24px;
+      .nav-links {
+        gap: 16px;
       }
 
       .hero {
         gap: 32px;
       }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .theme-toggle {
+        width: 100%;
+        justify-content: center;
+      }
     }
 
-    /* ANIMATIONS */
+    @media (max-width: 520px) {
+      .hero-title {
+        font-size: 2.8rem;
+      }
+
+      .hero-visual,
+      .about-card,
+      .skills-card,
+      .project-card,
+      .contact-card,
+      .contact-form {
+        border-radius: 24px;
+      }
+
+      .project-list {
+        gap: 20px;
+      }
+    }
+
     @keyframes fadeInUp {
       from {
         opacity: 0;
-        transform: translateY(18px);
+        transform: translateY(20px);
       }
       to {
         opacity: 1;
@@ -671,53 +707,51 @@
         opacity: 1;
       }
     }
-
-    @keyframes fill {
-      to {
-        transform: translateX(0);
-      }
-    }
   </style>
 </head>
 <body>
   <header>
-    <div class="navbar">
+    <div class="page navbar">
       <a href="#home" class="brand">VNYV</a>
       <nav>
-        <ul class="menu">
+        <ul class="nav-links">
           <li><a href="#home">Home</a></li>
           <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
+      <button type="button" class="theme-toggle" data-theme-toggle="" aria-label="Chuyển chủ đề">
+        🌙 <span>Dark mode</span>
+      </button>
     </div>
   </header>
 
   <main class="page">
     <section class="hero" id="home">
       <div class="hero-copy">
-        <span class="eyebrow">Web Designer</span>
-        <h1 class="hero-title">Thiết kế trải nghiệm web tinh tế, tối giản và hiện đại.</h1>
-        <p class="hero-text">Tôi là Võ Ngọc Yến Vy, Web Designer / UI-UX Designer với 1 năm kinh nghiệm xây dựng giao diện cho web bán hàng, website trường học và hệ thống LMS.</p>
+        <span class="eyebrow">Portfolio Designer</span>
+        <h1 class="hero-title">Xin chào, tôi là Võ Ngọc Yến Vy — sinh viên thiết kế đồ họa kỹ thuật số.</h1>
+        <p class="hero-text">Hiện đang học tại Đại học Gia Định, khoa Công Nghệ Thông Tin. Tôi xây dựng website, thiết kế UI/UX và hình ảnh thương hiệu với phong cách tối giản, sạch và tinh tế.</p>
         <div class="hero-actions">
           <a href="#projects" class="btn btn-primary">Xem dự án</a>
-          <a href="#contact" class="btn btn-secondary">Liên hệ với tôi</a>
+          <a href="#contact" class="btn btn-secondary">Liên hệ</a>
         </div>
       </div>
 
       <div class="hero-visual">
+        <div class="avatar">
+          <div class="avatar-figure">VY</div>
+        </div>
         <div class="hero-card">
-          <div class="hero-card__item">
-            <p class="hero-card__title">Tập trung vào:</p>
-            <h2 class="hero-card__value">UI / UX Design</h2>
-          </div>
-          <div class="hero-card__item">
-            <p class="hero-card__meta">Thiết kế giao diện rõ ràng với cấu trúc trải nghiệm thân thiện, chuyên nghiệp và dễ tiếp cận cho người dùng.</p>
-          </div>
-          <div class="hero-card__item">
-            <p class="hero-card__title">Phong cách:</p>
-            <h2 class="hero-card__value">Tối giản, sang trọng</h2>
+          <div class="hero-info">
+            <p class="about-text">Sinh viên năng động với niềm đam mê thiết kế trải nghiệm số. Tôi thường tạo ra những concept giao diện rõ ràng, cân bằng thẩm mỹ và hiệu quả sử dụng.</p>
+            <div class="hero-info meta-list">
+              <div class="meta-item"><strong>Trường</strong> Đại học Gia Định</div>
+              <div class="meta-item"><strong>Ngành</strong> Đồ họa Kỹ thuật số</div>
+              <div class="meta-item"><strong>Khoa</strong> Công Nghệ Thông Tin</div>
+            </div>
           </div>
         </div>
       </div>
@@ -725,88 +759,85 @@
 
     <section class="section" id="about">
       <div class="section-title">About</div>
-      <h2 class="section-heading">Thiết kế tập trung vào người dùng và chuyển đổi.</h2>
-      <div class="about">
-        <div>
-          <p class="about-text">Với 1 năm kinh nghiệm thiết kế UI web bán hàng, website trường học và hệ thống LMS, tôi xây dựng giải pháp trực quan, dễ sử dụng và phù hợp với xu hướng hiện đại. Mỗi thiết kế đều ưu tiên tính thẩm mỹ nhẹ nhàng, bố cục cân đối và màu sắc hài hòa.</p>
+      <h2 class="section-heading">Thiết kế sáng tạo dựa trên cảm nhận người dùng.</h2>
+      <p class="section-description">Tôi tập trung vào trải nghiệm và thẩm mỹ tối giản, giúp thương hiệu của bạn xuất hiện chuyên nghiệp trên mọi thiết bị. Mỗi dự án là sự kết hợp giữa cấu trúc rõ ràng, không gian trắng tinh tế và tương tác nhẹ nhàng.</p>
+      <div class="about-grid">
+        <div class="about-card">
+          <h3>Thông tin cá nhân</h3>
+          <div class="info-grid">
+            <div class="info-block"><strong>Họ và tên</strong><span>Võ Ngọc Yến Vy</span></div>
+            <div class="info-block"><strong>Nghề nghiệp</strong><span>Sinh viên</span></div>
+            <div class="info-block"><strong>Trường</strong><span>Đại học Gia Định</span></div>
+            <div class="info-block"><strong>Ngành</strong><span>Đồ họa Kỹ thuật số</span></div>
+            <div class="info-block"><strong>Khoa</strong><span>Công Nghệ Thông Tin</span></div>
+          </div>
         </div>
-        <div class="skills">
-          <article class="skill-card">
-            <div class="skill-main">
-              <h3 class="skill-name">UI / UX Design</h3>
-              <span class="skill-badge">Chuyên sâu</span>
-            </div>
-            <div class="progress ui"><span></span></div>
-          </article>
-          <article class="skill-card">
-            <div class="skill-main">
-              <h3 class="skill-name">Thiết kế đồ họa</h3>
-              <span class="skill-badge">Sáng tạo</span>
-            </div>
-            <div class="progress graphic"><span></span></div>
-          </article>
+        <div class="skills-card">
+          <h3>Triết lý thiết kế</h3>
+          <p class="about-text">Thiết kế với sự tinh giản, chú ý đến từng chi tiết và đảm bảo trải nghiệm người dùng trực quan. Tôi muốn mỗi sản phẩm không chỉ đẹp mà còn dễ tiếp cận và hữu dụng.</p>
         </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="section-title">Skills</div>
+      <h2 class="section-heading">Công cụ và kỹ năng tôi sử dụng.</h2>
+      <p class="section-description">Tôi thường làm việc với những công cụ thiết kế hàng đầu và tối ưu luồng thiết kế để xây dựng giao diện thương mại điện tử, website giáo dục và hệ thống học trực tuyến.</p>
+      <div class="skill-list">
+        <span class="skill-pill">Adobe Photoshop</span>
+        <span class="skill-pill">Adobe Illustrator</span>
+        <span class="skill-pill">Figma</span>
+        <span class="skill-pill">UI/UX Design</span>
+        <span class="skill-pill">Branding</span>
       </div>
     </section>
 
     <section class="section" id="projects">
       <div class="section-title">Projects</div>
-      <h2 class="section-heading">Các dự án nổi bật tôi đã thực hiện.</h2>
-      <div class="projects-grid">
+      <h2 class="section-heading">Một số dự án thiết kế tiêu biểu.</h2>
+      <div class="project-list">
         <article class="project-card">
           <div class="project-icon">🛒</div>
           <h3 class="project-title">Web bán hàng</h3>
-          <p class="project-text">Thiết kế cửa hàng trực tuyến chuyên nghiệp với trải nghiệm mua sắm mượt mà, rõ ràng và tối ưu cho khách hàng.</p>
-          <div class="project-pill">UI/UX Design</div>
+          <p class="project-text">Thiết kế giao diện cửa hàng trực tuyến với trải nghiệm mua sắm sáng sủa, thân thiện và dễ điều hướng.</p>
+          <div class="project-chip">UI Design</div>
         </article>
-
         <article class="project-card">
           <div class="project-icon">🏫</div>
           <h3 class="project-title">Website trường học</h3>
-          <p class="project-text">Xây dựng giao diện website trường học thân thiện, dễ quản lý thông tin và truyền tải hình ảnh thương hiệu chuyên nghiệp.</p>
-          <div class="project-pill">Thiết kế nhận diện</div>
+          <p class="project-text">Xây dựng hệ thống website dành cho trường học với bố cục thông tin rõ ràng, phù hợp với giáo viên và phụ huynh.</p>
+          <div class="project-chip">Graphic Design</div>
         </article>
-
         <article class="project-card">
           <div class="project-icon">🎓</div>
           <h3 class="project-title">Hệ thống LMS</h3>
-          <p class="project-text">Thiết kế hệ thống học tập trực tuyến với cấu trúc rõ ràng, bảng điều khiển dễ sử dụng và trải nghiệm theo dõi khóa học hiệu quả.</p>
-          <div class="project-pill">Trải nghiệm người dùng</div>
+          <p class="project-text">Thiết kế giao diện học trực tuyến giúp học viên dễ dàng theo dõi khóa học, bài giảng và tiến trình học tập.</p>
+          <div class="project-chip">UX Strategy</div>
         </article>
       </div>
     </section>
 
     <section class="section" id="contact">
       <div class="section-title">Contact</div>
-      <h2 class="section-heading">Cùng tạo nên trải nghiệm kỹ thuật số ấn tượng.</h2>
+      <h2 class="section-heading">Kết nối với tôi để bắt đầu dự án.</h2>
       <div class="contact">
         <div class="contact-card">
           <h3>Thông tin liên hệ</h3>
           <div class="contact-details">
             <div class="contact-item">
-              <div class="contact-bullet">📧</div>
-              <div class="contact-meta">
-                <strong>Email</strong>
-                <span>yonvydesign@example.com</span>
-              </div>
+              <div class="contact-icon">📧</div>
+              <div class="contact-meta"><strong>Email</strong><span>yonvydesign@example.com</span></div>
             </div>
             <div class="contact-item">
-              <div class="contact-bullet">📍</div>
-              <div class="contact-meta">
-                <strong>Vị trí</strong>
-                <span>TP. Hồ Chí Minh, Việt Nam</span>
-              </div>
+              <div class="contact-icon">🌐</div>
+              <div class="contact-meta"><strong>Mạng xã hội</strong><span>LinkedIn / Behance / Dribbble</span></div>
             </div>
             <div class="contact-item">
-              <div class="contact-bullet">💼</div>
-              <div class="contact-meta">
-                <strong>Vai trò</strong>
-                <span>Web Designer / UI-UX Designer</span>
-              </div>
+              <div class="contact-icon">📍</div>
+              <div class="contact-meta"><strong>Địa điểm</strong><span>TP. Hồ Chí Minh, Việt Nam</span></div>
             </div>
           </div>
         </div>
-
         <form class="contact-form" action="#" method="POST">
           <h3>Gửi tin nhắn</h3>
           <div class="form-group">
@@ -821,13 +852,13 @@
             <label for="message">Tin nhắn</label>
             <textarea id="message" placeholder="Viết nội dung liên hệ" rows="6"></textarea>
           </div>
-          <button type="submit" class="submit-btn">Gửi tin nhắn</button>
+          <button type="submit" class="submit-btn">Gửi liên hệ</button>
         </form>
       </div>
     </section>
 
     <footer>
-      <p class="footer-note">© 2026 Võ Ngọc Yến Vy. All rights reserved.</p>
+      <p class="footer-note">© 2026 Võ Ngọc Yến Vy. Portfolio Design.</p>
       <div class="social-links">
         <a href="#" aria-label="LinkedIn">in</a>
         <a href="#" aria-label="Behance">Be</a>
@@ -835,5 +866,27 @@
       </div>
     </footer>
   </main>
+
+  <script>
+    const themeButton = document.querySelector('[data-theme-toggle]');
+    const root = document.body;
+    const themeLabel = themeButton.querySelector('span');
+    const savedTheme = localStorage.getItem('portfolio-theme');
+
+    const applyTheme = (mode) => {
+      root.classList.toggle('dark', mode === 'dark');
+      themeLabel.textContent = mode === 'dark' ? 'Light mode' : 'Dark mode';
+      themeButton.firstChild.textContent = mode === 'dark' ? '☀️' : '🌙';
+      localStorage.setItem('portfolio-theme', mode);
+    };
+
+    const initialTheme = savedTheme || 'light';
+    applyTheme(initialTheme);
+
+    themeButton.addEventListener('click', () => {
+      const nextTheme = root.classList.contains('dark') ? 'light' : 'dark';
+      applyTheme(nextTheme);
+    });
+  </script>
 </body>
 </html>
