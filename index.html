@@ -139,6 +139,12 @@
       padding: 18px 0;
     }
 
+    .navbar nav {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+
     .logo {
       font-size: 0.95rem;
       letter-spacing: 0.22em;
@@ -150,6 +156,7 @@
       display: flex;
       flex-wrap: wrap;
       align-items: center;
+      justify-content: center;
       gap: 26px;
       list-style: none;
       margin: 0;
@@ -215,7 +222,7 @@
 
     .hero {
       display: grid;
-      grid-template-columns: minmax(280px, 0.95fr) 1.05fr;
+      grid-template-columns: 1.1fr minmax(320px, 0.9fr);
       align-items: center;
       gap: 48px;
       padding: 72px 0 40px;
@@ -223,6 +230,34 @@
 
     .hero-copy {
       max-width: 620px;
+      padding-right: 12px;
+    }
+
+    .hero-box {
+      position: relative;
+      overflow: hidden;
+      border-radius: 36px;
+      background: rgba(255, 249, 230, 0.08);
+      box-shadow: inset 0 0 0 1px rgba(245, 197, 75, 0.15), 0 32px 90px rgba(0,0,0,0.12);
+      min-height: 520px;
+      padding: 34px;
+      display: grid;
+      align-items: center;
+      justify-items: center;
+      transition: background 0.4s ease, border-color 0.4s ease;
+    }
+
+    .hero-box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 80% 20%, rgba(245, 197, 75, 0.18), transparent 28%);
+      pointer-events: none;
+    }
+
+    body.dark .hero-box {
+      background: rgba(16, 18, 28, 0.65);
+      box-shadow: inset 0 0 0 1px rgba(245, 197, 75, 0.1), 0 32px 90px rgba(0,0,0,0.28);
     }
 
     .eyebrow {
@@ -283,23 +318,6 @@
 
     .button:hover {
       transform: translateY(-2px);
-    }
-
-    .hero-box {
-      position: relative;
-      overflow: hidden;
-      border-radius: 36px;
-      background: transparent;
-      min-height: 520px;
-      padding: 34px;
-      display: grid;
-      align-items: center;
-      justify-items: center;
-      transition: background 0.4s ease, border-color 0.4s ease;
-    }
-
-    body.dark .hero-box {
-      background: transparent;
     }
 
     .hero-card {
@@ -766,17 +784,22 @@
 
   <main class="page">
     <section class="hero" id="home">
-      <div class="hero-box fade-up">
-        <div class="hero-card">
-          <div class="hero-avatar"><img src="https://via.placeholder.com/200x200?text=VY+Logo" alt="VY Logo"></div>
-          <h3>Võ Ngọc Yến Vy</h3>
-          <p>Đại học Gia Định • Đồ họa Kỹ thuật số • Khoa Công Nghệ Thông Tin</p>
+      <div class="hero-copy fade-up delay-1">
+        <div class="eyebrow">Sinh viên / Thiết kế đồ họa kỹ thuật số</div>
+        <h1 class="hero-title">Thiết kế giao diện hiện đại, tinh giản và ấm áp.</h1>
+        <p class="hero-text">Là sinh viên đồ họa kỹ thuật số, tôi tạo các sản phẩm UI/UX với sự cân bằng giữa thẩm mỹ, trải nghiệm và cảm giác chuyên nghiệp.</p>
+        <div class="hero-actions">
+          <a href="#projects" class="button button-primary">Xem dự án</a>
+          <a href="#contact" class="button button-secondary">Liên hệ</a>
         </div>
       </div>
 
-      <div class="hero-copy fade-up delay-1">
-        <h1 class="hero-title">Thiết kế giao diện hiện đại, tinh giản và ấm áp.</h1>
-        <p class="hero-text">Là sinh viên đồ họa kỹ thuật số, tôi tạo các sản phẩm UI/UX với sự cân bằng giữa thẩm mỹ, trải nghiệm và cảm giác chuyên nghiệp.</p>
+      <div class="hero-box fade-up">
+        <div class="hero-card">
+          <div class="hero-avatar"><img src="https://via.placeholder.com/260x260?text=VY+Logo" alt="VY Logo"></div>
+          <h3>Võ Ngọc Yến Vy</h3>
+          <p>Đại học Gia Định • Đồ họa Kỹ thuật số • Khoa Công Nghệ Thông Tin</p>
+        </div>
       </div>
     </section>
 
