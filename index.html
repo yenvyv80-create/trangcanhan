@@ -222,42 +222,33 @@
 
     .hero {
       display: grid;
-      grid-template-columns: 1.1fr minmax(320px, 0.9fr);
-      align-items: center;
-      gap: 48px;
-      padding: 72px 0 40px;
+      grid-template-columns: 1fr;
+      align-items: flex-start;
+      gap: 24px;
+      padding: 100px 0 40px;
     }
 
     .hero-copy {
+      max-width: 760px;
+      padding-right: 0;
+    }
+
+    .hero-subtitle {
+      margin: 18px 0 0;
+      font-size: 1.05rem;
+      color: var(--text);
+      font-weight: 500;
+      max-width: 720px;
+      line-height: 1.7;
+    }
+
+    .hero-quote {
+      margin: 22px 0 34px;
+      color: var(--muted);
+      font-size: 0.98rem;
+      font-style: italic;
       max-width: 620px;
-      padding-right: 12px;
-    }
-
-    .hero-box {
-      position: relative;
-      overflow: hidden;
-      border-radius: 36px;
-      background: rgba(255, 249, 230, 0.08);
-      box-shadow: inset 0 0 0 1px rgba(245, 197, 75, 0.15), 0 32px 90px rgba(0,0,0,0.12);
-      min-height: 520px;
-      padding: 34px;
-      display: grid;
-      align-items: center;
-      justify-items: center;
-      transition: background 0.4s ease, border-color 0.4s ease;
-    }
-
-    .hero-box::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 80% 20%, rgba(245, 197, 75, 0.18), transparent 28%);
-      pointer-events: none;
-    }
-
-    body.dark .hero-box {
-      background: rgba(16, 18, 28, 0.65);
-      box-shadow: inset 0 0 0 1px rgba(245, 197, 75, 0.1), 0 32px 90px rgba(0,0,0,0.28);
+      opacity: 0.85;
     }
 
     .eyebrow {
@@ -273,10 +264,11 @@
     }
 
     .hero-title {
-      font-size: clamp(2.8rem, 5vw, 4.3rem);
+      font-size: clamp(3.4rem, 6vw, 5.4rem);
       margin: 0;
-      line-height: 0.96;
+      line-height: 0.92;
       letter-spacing: -0.04em;
+      color: var(--primary);
     }
 
     .hero-text {
@@ -767,19 +759,12 @@
   <main class="page">
     <section class="hero" id="home">
       <div class="hero-copy fade-up delay-1">
-        <div class="eyebrow">Sinh viên / Thiết kế đồ họa kỹ thuật số</div>
-        <h1 class="hero-title">Thiết kế giao diện hiện đại, tinh giản và ấm áp.</h1>
-        <p class="hero-text">Là sinh viên đồ họa kỹ thuật số, tôi tạo các sản phẩm UI/UX với sự cân bằng giữa thẩm mỹ, trải nghiệm và cảm giác chuyên nghiệp.</p>
+        <h1 class="hero-title">Võ Ngọc Yến Vy</h1>
+        <div class="hero-subtitle">Sinh viên Đại học Gia Định - Đồ họa Kỹ thuật số</div>
+        <div class="hero-quote">“Nghệ thuật nằm ở cách tôi nhìn thế giới.”</div>
         <div class="hero-actions">
           <a href="#projects" class="button button-primary">Xem dự án</a>
           <a href="#contact" class="button button-secondary">Liên hệ</a>
-        </div>
-      </div>
-
-      <div class="hero-box fade-up">
-        <div class="hero-card">
-          <h3>Võ Ngọc Yến Vy</h3>
-          <p>Đại học Gia Định • Đồ họa Kỹ thuật số • Khoa Công Nghệ Thông Tin</p>
         </div>
       </div>
     </section>
