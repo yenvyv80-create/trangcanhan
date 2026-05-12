@@ -272,10 +272,25 @@
       overflow: hidden;
     }
 
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      bottom: 8%;
+      right: 6%;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: rgba(255, 245, 206, 0.24);
+      filter: blur(32px);
+      opacity: 0.7;
+      animation: glowPulse 14s ease-in-out infinite;
+    }
+
     .hero-deco {
       position: absolute;
       transform: translate(var(--offset-x, 0), var(--offset-y, 0));
       transition: transform 0.18s ease-out;
+      animation: decoFloat var(--deco-duration, 14s) ease-in-out infinite;
     }
 
     .hero-paw,
@@ -296,7 +311,7 @@
                   radial-gradient(circle at 80% 20%, rgba(171, 90, 34, 0.95) 15%, transparent 16%),
                   radial-gradient(circle at 50% 55%, rgba(171, 90, 34, 0.96) 34%, transparent 35%);
       background-color: rgba(255, 231, 175, 0.9);
-      animation: pawFloat 8s ease-in-out infinite;
+      animation: pawFloat 9s ease-in-out infinite;
     }
 
     .hero-paw--small {
@@ -336,11 +351,11 @@
       transform: rotate(24deg);
     }
 
-    .hero-deco--1 { top: 12%; left: 8%; }
-    .hero-deco--2 { top: 18%; right: 6%; }
-    .hero-deco--3 { top: 48%; left: 24%; }
-    .hero-deco--4 { bottom: 14%; right: 12%; }
-    .hero-deco--5 { bottom: 22%; left: 16%; }
+    .hero-deco--1 { top: 12%; left: 8%; --deco-duration: 11s; }
+    .hero-deco--2 { top: 18%; right: 6%; --deco-duration: 13s; }
+    .hero-deco--3 { top: 48%; left: 24%; --deco-duration: 10s; }
+    .hero-deco--4 { bottom: 14%; right: 12%; --deco-duration: 12s; }
+    .hero-deco--5 { bottom: 22%; left: 16%; --deco-duration: 15s; }
 
     .hero-deco--depth-1 { --depth-mult: 0.08; }
     .hero-deco--depth-2 { --depth-mult: 0.12; }
@@ -373,6 +388,13 @@
     @keyframes glowPulse {
       0%, 100% { transform: scale(1) translateX(0); opacity: 0.78; }
       50% { transform: scale(1.04) translateX(-4px); opacity: 0.92; }
+    }
+
+    @keyframes decoFloat {
+      0%, 100% { transform: translate(var(--offset-x, 0), var(--offset-y, 0)) translateY(0) translateX(0) rotate(0deg); }
+      25% { transform: translate(var(--offset-x, 0), var(--offset-y, 0)) translateY(-5px) translateX(3px) rotate(1deg); }
+      50% { transform: translate(var(--offset-x, 0), var(--offset-y, 0)) translateY(-2px) translateX(-4px) rotate(-1deg); }
+      75% { transform: translate(var(--offset-x, 0), var(--offset-y, 0)) translateY(4px) translateX(1px) rotate(0.5deg); }
     }
 
     @keyframes pawFloat {
