@@ -1,3 +1,4 @@
+Đây là bài của Võ Ngọc Yến Vy, dưới đây là promt bài em:
 Bạn là một UI/UX Designer và Front-end Developer chuyên nghiệp.
 
 Hãy thiết kế và viết code cho một website portfolio cá nhân chỉ sử dụng HTML và CSS (không dùng JavaScript).
