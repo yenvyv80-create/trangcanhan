@@ -65,4 +65,4 @@ Yêu cầu code:
 Output:
 - Trả về đầy đủ code HTML + CSS hoàn chỉnh
 - Có thể chạy ngay khi copy
-Công cụ AI sử dụng: chat GPT
+Công cụ AI sử dụng: chat GPT, các ảnh trong bài được kiếm từ google
